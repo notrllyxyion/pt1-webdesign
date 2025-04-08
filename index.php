@@ -9,8 +9,8 @@
     
 <H1> This is a sample Calcultaor</H1>
     <form action ="index.php" method = "post">
-        <input name = "NumberOne" value = ""><br>
-        <input name = "NumberTwo" value = ""><br>
+        <input name = "NumberOne" type = "number"><br>
+        <input name = "NumberTwo" type = "number"><br>
 
         <input type = "submit" name = "AllOperator" value = "+">
      <input type = "submit" name = "AllOperator" value = "-">
@@ -24,33 +24,40 @@
 
 <?php 
     if (isset ($_POST["AllOperator"])) {
-    $numOne = $_POST ["NumberOne"];
-    $numTwo = $_POST ["NumberTwo"];
-    $operator = $_POST ["AllOperator"];
-    $result = '';
     
-    if ($operator == "+"){
-        $result = $numOne + $numTwo;
-        echo $result;
+
+        if(isset($_POST["NumberOne"])&&isset($_POST["NumberTwo"])){
+            $numOne = $_POST ["NumberOne"];
+            $numTwo = $_POST ["NumberTwo"];
+            $operator = $_POST ["AllOperator"];
+            $result = 0;
+
+            if($numOne != null && $numTwo != null){
+
+                if ($operator == "+"){
+                    $result = $numOne + $numTwo;
+                    echo $result;
+                }
+                else if ($operator == "-")
+                {
+                    $result = $numOne - $numTwo;
+                    echo $result;
+                }
+                else if ($operator == "x") {
+                    $result = $numOne * $numTwo;
+                    echo $result;
+                }
+                else if ($operator == "÷" ){
+                    $result = $numOne / $numTwo;
+                    echo $result;
+                }
+            } 
+            else
+            {
+                echo"mag lagay ka muna";
+            }
+        }
     }
-    else if ($operator == "-")
-    {
-        $result = $numOne - $numTwo;
-        echo $result;
-    }
-    else if ($operator == "x") {
-        $result = $numOne * $numTwo;
-        echo $result;
-    }
-    else if ($operator == "÷" ){
-        $result = $numOne / $numTwo;
-        echo $result;
-    }
-    if ($numOne == 0) {
-        echo "Please Input Value Number one";
-    }
-    else if ($numTwo == 0) {
-        echo "Please Input Value Number Two";
-    }
-    }
+       
+
 ?>
